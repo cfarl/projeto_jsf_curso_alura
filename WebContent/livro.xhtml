@@ -10,6 +10,12 @@
 <ui:define name="texto"> Cadastro de Livros </ui:define> <!-- define valor para 'texto' do template -->
 <ui:define name="conteudo"> <!-- define valor para 'conteudo' do template -->
 
+		<!-- Carrega um livro quando passar parâmetro como http://localhost:8080/livraria/livro.xhtml?livroId=3 -->
+		<f:metadata>
+    		<f:viewParam name="livroId" value="#{livroBean.livroId}"/>
+    		<f:viewAction action="#{livroBean.carregarLivroPelaId}" if="#{param.livroId != null}" />
+		</f:metadata>
+
 	<h:form>
 		<h:messages id="messages" />
 						

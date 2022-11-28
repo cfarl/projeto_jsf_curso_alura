@@ -12,18 +12,23 @@
 	<h:body>
 		<div id="cabecalho">
 			<h:graphicImage library="img" name="logo.png" height="100" /> <!-- imagem na pasta 'resources' -->
-			<h1><ui:insert name="titulo" /></h1> <!-- Texto a ser preenchido pelas paginas -->
+			
+			<!-- O botao de deslogar só aparece se não há usuário logado na sessao -->
+			<h:form rendered="#{usuarioLogado != null}">
+				<h:commandLink value="Logout" action="#{loginBean.deslogar}"/>
+			</h:form>
+			
+			<h1><ui:insert name="titulo" /></h1> <!-- Texto a ser preenchido pelas pagina incluida -->
 		</div>
 		
 		<div id="conteudo">			
-			<ui:insert name="conteudo" /> <!-- Conteudo das paginas -->
+			<ui:insert name="conteudo" /> <!-- Conteudo da pagina incluida -->
 		</div>
 		
 		<div id="rodape">
 			<hr />
   			copyright 2012
-  			<ui:insert name="texto">
-  		</ui:insert>
+  			<ui:insert name="texto" /> <!-- Rodape da pagina incluida -->  		
 </div>
 	</h:body>
 

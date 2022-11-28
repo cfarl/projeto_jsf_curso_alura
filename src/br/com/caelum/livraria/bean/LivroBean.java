@@ -19,14 +19,28 @@ public class LivroBean {
 
 	private Livro livro = new Livro();
 
-	private Integer autorId; // Guarda o id do autor selecionado na combobox
+	private Integer livroId ;
+	
+	private Integer autorId; // Guarda o id do lautor selecionado na combobox
 
 	public Integer getAutorId() {
 		return autorId;
 	}
 
+	public Integer getLivroId() {
+		return livroId;
+	}
+
+	public void setLivroId(Integer livroId) {
+		this.livroId = livroId;
+	}
+
 	public void setAutorId(Integer autorId) {
 		this.autorId = autorId;
+	}
+
+	public void setLivro(Livro livro) {
+		this.livro = livro;
 	}
 
 	public Livro getLivro() {
@@ -86,14 +100,6 @@ public class LivroBean {
 
 		this.livro = new Livro();
 	}
-
-	// ----------------------------------------------------
-	/** Remove o livro selecionado */
-	// ----------------------------------------------------
-	public void remover(Livro livroSelecionado) {
-		System.out.println("Removendo livro " + livroSelecionado.getTitulo() );
-		new DAO<Livro>(Livro.class).remove(livroSelecionado);
-	}
 	
 	// ----------------------------------------------------
 	/** Carrega o livro selecionado para alteracao */
@@ -102,13 +108,24 @@ public class LivroBean {
 		System.out.println("Carregando o livro " + livroSelecionado.getTitulo() );
 		this.livro = livroSelecionado ;
 	}	
-	
+
+	// ----------------------------------------------------
+	/** Remove o livro selecionado */
+	// ----------------------------------------------------
+	public void remover(Livro livroSelecionado) {
+		System.out.println("Removendo livro " + livroSelecionado.getTitulo() );
+		new DAO<Livro>(Livro.class).remove(livroSelecionado);
+	}	
 	
 	// ----------------------------------------------------
 	/** Remove o autor do livro selecionado */
 	// ----------------------------------------------------
 	public void removerAutorDoLivro(Autor autor) {
 		this.livro.removeAutor(autor) ;
+	}	
+	
+	public void carregarLivroPelaId() {
+	    this.livro = new DAO<Livro>(Livro.class).buscaPorId(livroId);
 	}	
 
 }
