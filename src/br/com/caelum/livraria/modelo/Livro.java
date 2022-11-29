@@ -1,6 +1,7 @@
 package br.com.caelum.livraria.modelo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class Livro {
 	private Integer id;
 
 	private String titulo;
+	private String genero;
 	private String isbn;
 	private double preco;
 	
@@ -29,7 +31,7 @@ public class Livro {
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Autor> autores = new ArrayList<Autor>();
-
+	
 	public List<Autor> getAutores() {
 		return autores;
 	}
@@ -83,6 +85,14 @@ public class Livro {
 
 	public void removeAutor(Autor autor) {
 		this.autores.remove(autor) ;		
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
 	}
 
 	

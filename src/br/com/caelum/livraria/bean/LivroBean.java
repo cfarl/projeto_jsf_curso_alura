@@ -1,5 +1,6 @@
 package br.com.caelum.livraria.bean;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -23,6 +24,14 @@ public class LivroBean {
 	
 	private Integer autorId; // Guarda o id do lautor selecionado na combobox
 
+	private List<Livro> livros;
+
+	private List<String> generos = Arrays.asList("Romance", "Drama", "Ação");
+
+	public List<String> getGeneros() {
+	    return generos;
+	}
+	
 	public Integer getAutorId() {
 		return autorId;
 	}
@@ -55,7 +64,10 @@ public class LivroBean {
 	/** Recupera todos os livros cadastrados */
 	//------------------------------------------------------
 	public List<Livro> getLivros() {
-		return new DAO<Livro>(Livro.class).listaTodos();
+		if(this.livros == null) {
+			this.livros = new DAO<Livro>(Livro.class).listaTodos();
+		}
+		return this.livros ;		
 	}
 
 	public List<Autor> getAutoresLivro() {
@@ -92,11 +104,13 @@ public class LivroBean {
 					new FacesMessage("Livro deve ter pelo menos um Autor"));
 		}
 
+		DAO<Livro> dao = new DAO<Livro>(Livro.class);
 		if(this.livro.getId() == null) {
-			new DAO<Livro>(Livro.class).adiciona(this.livro);
+			dao.adiciona(this.livro);
 		} else {
-			new DAO<Livro>(Livro.class).atualiza(this.livro);
+			dao.atualiza(this.livro);
 		}
+		this.livros = dao.listaTodos();
 
 		this.livro = new Livro();
 	}
