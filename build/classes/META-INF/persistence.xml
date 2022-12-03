@@ -12,19 +12,20 @@
 		<class>br.com.caelum.livraria.modelo.Autor</class>
 		<class>br.com.caelum.livraria.modelo.Usuario</class>
 
-<!-- 
+ 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:meubanco" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:meubanco;INIT=RUNSCRIPT FROM 'classpath:data.sql'" />
 			<property name="javax.persistence.jdbc.user" value="sa" />
-			<property name="javax.persistence.jdbc.password" value="" />
+			<property name="javax.persistence.jdbc.password" value="" />			
 
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
-		</properties>
- -->	
- 		
+			<!-- property name="hibernate.hbm2ddl.import_files" value="data.sql" /-->
+		</properties> 	
+ 	
+ 	<!--	
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/livrariadb" />
@@ -36,7 +37,7 @@
 			<property name="hibernate.format_sql" value="false" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 		</properties>
-		
+		-->
 
 	</persistence-unit>
 

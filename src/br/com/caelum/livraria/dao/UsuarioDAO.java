@@ -13,6 +13,12 @@ public class UsuarioDAO {
 	//----------------------------------------------------------------------------
 	public boolean existeUsuario(Usuario usuario) {
 		EntityManager em = new JPAUtil().getEntityManager();
+		
+		List<Usuario> resultado1 = em.createQuery("select u from Usuario u ", Usuario.class)
+				.getResultList();
+		System.out.println("----------->" + resultado1.size());
+		
+		
 		List<Usuario> resultado = em.createQuery("select u from Usuario u where u.email = :email and u.senha = :senha ", Usuario.class)
 				.setParameter("email", usuario.getEmail())
 				.setParameter("senha", usuario.getSenha())
